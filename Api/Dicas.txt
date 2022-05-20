@@ -1,0 +1,26 @@
+localhost:8080/
+====================================================
+Get = Pega informação
+Post = salva informação
+Put = Atualizar informação
+Delete = Deletar informação
+=========================================================
+
+200 busca conecção 
+201 cria um dado no banco
+202 updadte no banco
+400 erro
+404 nao acho o erro
+424 achou erro
+500 erro interno
+===================================================
+java -jar crud.jar   -> no cmd
+
+================================================
+<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+		</dependency> 
+DEPENDECIA PARA INSTALAR
+======================================================================
+

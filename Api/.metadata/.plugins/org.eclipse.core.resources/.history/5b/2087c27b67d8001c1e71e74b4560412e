@@ -1,0 +1,41 @@
+package org.serratec.backend.exercicio02.service;
+
+import java.util.ArrayList;
+import java.util.List;
+import org.serratec.backend.exercicio02.model.Livro;
+import org.springframework.stereotype.Service;
+
+
+@Service
+public class JogoService {
+		
+	public List<Jogo> jogo = new ArrayList<>();	
+
+	public List<Jogo> listaLivro() {
+		return this.jogo;
+	}
+	
+	public Jogo idLivro(int idPosicao) {			
+		Jogo livroEscolhido = new Jogo();
+		livroEscolhido = jogo.get(idPosicao);		
+		return livroEscolhido;
+		
+	}
+
+	
+	public void adicionar(Jogo livro) {
+		jogo.add(livro);
+	}
+	
+	public void editar(int idPosicao, Jogo infoEditada) {
+		Jogo livroEditado = jogo.get(idPosicao);
+		
+		livroEditado.setId(infoEditada.getId());
+		livroEditado.setTitulo(infoEditada.getTitulo());
+		livroEditado.setAutor(infoEditada.getEmpresa());
+	}
+	
+	public void deletar(int idPosicao) {
+		jogo.remove(idPosicao);
+	}
+}

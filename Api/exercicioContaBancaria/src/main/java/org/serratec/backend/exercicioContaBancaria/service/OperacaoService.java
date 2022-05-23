@@ -17,9 +17,9 @@ public class OperacaoService {
 	public void escolhaOperacao(Integer numeroConta, Operacao operacao)
 			throws SaldoInsuficienteException, ArgumentoInvalidoException {
 		ContaBancaria conta = contaBancariaRepository.getByNumeroConta(numeroConta);
-		if (operacao.getTipo().equalsIgnoreCase("débito")) {
+		if (operacao.getTipo().equalsIgnoreCase("crédito")) {
 			conta.setSaldo(conta.getSaldo() + operacao.getValor());
-		} else if (operacao.getTipo().equalsIgnoreCase("crédito")) {
+		} else if (operacao.getTipo().equalsIgnoreCase("débito")) {
 			if (conta.getSaldo() < operacao.getValor()) {
 				throw new SaldoInsuficienteException("SALDO INSUFICIENTE");
 			} else {

@@ -1,20 +1,25 @@
 package org.serratec.backend.projeto02.model;
 
 public class Todo {
+	//ATRIBUTOS
 	private Integer id;
 	private String titulo;
 	private String descricao;
 	
+	//CONSTRUTOR VAZIO
 	public Todo() {
 		
 	}
 	
+	//CONSTRUTOR
 	public Todo(Integer id, String titulo, String descricao) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
 		this.descricao = descricao;
 	}
+	
+	//GETTERS AND SETTERS
 	public Integer getId() {
 		return id;
 	}

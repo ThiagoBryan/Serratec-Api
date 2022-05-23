@@ -21,7 +21,7 @@ public class JogoController {
 	JogoService jogoService;
 
 	@GetMapping("/lista")
-	public List<Jogo> getListaLivro() {
+	public List<Jogo> getListaJogo() {
 		return jogoService.listaJogo();
 	}
 

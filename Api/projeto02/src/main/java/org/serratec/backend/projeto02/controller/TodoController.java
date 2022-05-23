@@ -15,28 +15,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@RequestMapping("/todo")
+@RestController // SEMPRE QUE CRIAR O CONTROLLER TEM QUE TER ESSA ANOTAÇÃO
+@RequestMapping("/todo")// CRIA O ENDPOINT;
 public class TodoController {
 	
-	@Autowired
+	@Autowired// PARA INSTANCIAR O SERVICE; 
 	TodoService todoService;
 	
-	@GetMapping("/lista")
-	public List<Todo> getTodo(){
-		return todoService.listaTodo();
+	@GetMapping("/lista") //CRIA O ENDPOINT PARA O GET;
+	public List<Todo> getTodo(){ 
+		return todoService.listaTodo(); // PEGA A LISTA CRIADA NO SERVICE;
 	}
 	
-	@PostMapping("/adicionar")
-	public void adicionar(@RequestBody Todo todo) {
+	@PostMapping("/adicionar") //CRIA O ENDPOINT PARA O POST;
+	public void adicionar(@RequestBody Todo todo) { // REQUESTBODY PEGA O BODY DA CLASSE;
 		todoService.adicionar(todo);
 	}
 	
-	@PutMapping("/atualizar")
+	@PutMapping("/atualizar") //CRIA O ENDPOINT PARA O PUT;
 	public void atualizar(@RequestParam Integer idTodo, @RequestBody Todo todoApi) {
 		todoService.atualizar(idTodo, todoApi);
 		
 	}	
+	//OUTRA FORMA DE FAZER O ATUALIZAR
 
 //O @PathVariable é utilizado sempre para id
 //	@PutMapping("/atualizar/{idTodo}")
@@ -44,8 +45,8 @@ public class TodoController {
 //		todoService.atualizar(idTodo, todoApi);
 //		}
 	
-	@DeleteMapping("/delete/{idTodo}")
-	public void deletar(@PathVariable int idTodo) {
+	@DeleteMapping("/delete/{idTodo}") //CRIA O ENDPOINT PARA O DELETE;
+	public void deletar(@PathVariable int idTodo) {//O @PathVariable é utilizado sempre para id
 		todoService.deletar(idTodo);
 	}
 }

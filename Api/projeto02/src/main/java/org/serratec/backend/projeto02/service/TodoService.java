@@ -6,7 +6,7 @@ import java.util.List;
 import org.serratec.backend.projeto02.model.Todo;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service // SEMPRE CRIAR ESSA ANOTAÇÃO QUANDO CRIAR A CLASSE SERVICE
 public class TodoService {
 
 //	private List<Todo> todos = Arrays.asList(new Todo(1, "Farmácia", "Comprar remédio"),
@@ -16,11 +16,11 @@ public class TodoService {
 	
 	List<Todo> lista = new ArrayList<>();	
 	
-	public void adicionar(Todo todo) {
+	public void adicionar(Todo todo) { //PARA ADCIONAR UMA NOVA LISTA;
 		lista.add(todo);
 	}
 	
-	public List<Todo> listaTodo() {
+	public List<Todo> listaTodo() { //PARA RETONAR A LISTA
 		return this.lista;
 	}
 	

@@ -16,4 +16,6 @@ public interface ContaBancariaRepository extends JpaRepository<ContaBancaria,Int
 	@Transactional
 	Optional<ContaBancaria> deleteByNumeroConta(Integer numeroConta);
 
+	ContaBancaria getByNumeroConta(Integer numeroConta);
+
 }

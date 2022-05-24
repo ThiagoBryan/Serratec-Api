@@ -2,6 +2,7 @@ package org.serratec.backend.projeto03.controller;
 
 import java.util.List;
 
+import org.serratec.backend.projeto03.dto.ClienteDTO;
 import org.serratec.backend.projeto03.model.Cliente;
 import org.serratec.backend.projeto03.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,25 +20,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 	@RestController
 	@RequestMapping("/cliente")
-	public class ClienteControler {
+	public class ClienteController {
 
 		@Autowired //instancia automaticamente um objeto
 		ClienteService clienteService;
 
 		@PostMapping("/salvar")				//@RequestBody dados necessarios para salvar um cliente
-		public ResponseEntity<Void> salvar(@RequestBody Cliente cliente) {
-			clienteService.salvar(cliente);
+		public ResponseEntity<Void> salvar(@RequestBody ClienteDTO clienteDTO) {
+			clienteService.salvar(clienteDTO);
 			return new ResponseEntity<>(HttpStatus.CREATED);
 		}				//resposta que esta devolvendo
 		
 		@GetMapping("/buscar/{idCliente}")			//@PathVariable informação na URL
-		public ResponseEntity<Cliente> buscarPorId(@PathVariable Integer idCliente){
-			return  ResponseEntity.ok(clienteService.buscarPorId(idCliente));
+		public ResponseEntity<ClienteDTO> buscarPorId(@PathVariable Integer idCliente){
+			return ResponseEntity.ok(clienteService.buscarPorId(idCliente));
 		}
 	
 		@PutMapping("/atualizar/{idCliente}")
-		public ResponseEntity<Void> atualizar(@PathVariable Integer idCliente,@RequestBody Cliente cliente){
-			clienteService.atualizar(idCliente, cliente);
+		public ResponseEntity<Void> atualizar(@PathVariable Integer idCliente,@RequestBody Cliente clienteDTO){
+			clienteService.atualizar(idCliente, clienteDTO);
 			return new  ResponseEntity<>(HttpStatus.ACCEPTED);
 		}
 		

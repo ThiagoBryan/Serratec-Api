@@ -8,7 +8,7 @@ Delete = Deletar informação
 
 200 busca conecção 
 201 cria um dado no banco
-202 updadte no banco
+202 update no banco
 400 erro
 404 nao acho o erro
 424 achou erro
@@ -23,4 +23,5 @@ java -jar crud.jar   -> no cmd
 		</dependency> 
 DEPENDECIA PARA INSTALAR
 ======================================================================
-
+Sempre haverá 4 metodos no Service :
+SALVAR; BUSCAR POR ID; ATUALIZAR e DELETAR;

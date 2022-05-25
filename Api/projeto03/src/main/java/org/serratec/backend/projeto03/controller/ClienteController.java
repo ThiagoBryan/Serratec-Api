@@ -3,6 +3,7 @@ package org.serratec.backend.projeto03.controller;
 import java.util.List;
 
 import org.serratec.backend.projeto03.dto.ClienteDTO;
+import org.serratec.backend.projeto03.exception.ClienteException;
 import org.serratec.backend.projeto03.model.Cliente;
 import org.serratec.backend.projeto03.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,7 @@ import org.springframework.web.bind.annotation.RestController;
 		}				//resposta que esta devolvendo
 		
 		@GetMapping("/buscar/{idCliente}")			//@PathVariable informação na URL
-		public ResponseEntity<ClienteDTO> buscarPorId(@PathVariable Integer idCliente){
+		public ResponseEntity<ClienteDTO> buscarPorId(@PathVariable Integer idCliente) throws ClienteException{
 			return ResponseEntity.ok(clienteService.buscarPorId(idCliente));
 		}
 	

@@ -1,5 +1,6 @@
 package org.serratec.backend.biblioteca.dto;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class LivroDTO {
@@ -7,7 +8,7 @@ public class LivroDTO {
 	private String titulo;
 	private String tipo;
 	private String autor;
-	private Date dataPublicacao;
+	private LocalDate dataPublicacao;
 	
 	public LivroDTO() {
 		super();
@@ -37,11 +38,11 @@ public class LivroDTO {
 		this.autor = autor;
 	}
 
-	public Date getDataPublicacao() {
+	public LocalDate getDataPublicacao() {
 		return dataPublicacao;
 	}
 
-	public void setDataPublicacao(Date dataPublicacao) {
+	public void setDataPublicacao(LocalDate dataPublicacao) {
 		this.dataPublicacao = dataPublicacao;
 	}
 	

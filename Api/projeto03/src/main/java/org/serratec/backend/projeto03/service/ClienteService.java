@@ -2,7 +2,10 @@ package org.serratec.backend.projeto03.service;
 
 import java.util.List;
 import java.util.Optional;
+
 import org.serratec.backend.projeto03.dto.ClienteDTO;
+import org.serratec.backend.projeto03.exception.ClienteException;
+import org.serratec.backend.projeto03.model.Cartao;
 import org.serratec.backend.projeto03.model.Cliente;
 import org.serratec.backend.projeto03.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +35,7 @@ public class ClienteService {
 		
 		cliente.setCpf(clienteDTO.getCpf());
 		cliente.setDataNascimento(clienteDTO.getDataNascimento());
-		cliente.setNome(clienteDTO.getCpf());
+		cliente.setNome(clienteDTO.getNome());
 		cliente.setEmail(clienteDTO.getEmail());
 		cliente.setNumeroTelefone(clienteDTO.getNumeroTelefone());
 
@@ -47,7 +50,7 @@ public class ClienteService {
 		clienteRepository.save(clienteSalvar);
 	}
 
-	public ClienteDTO buscarPorId(Integer idCliente) {
+	public ClienteDTO buscarPorId(Integer idCliente) throws ClienteException {
 		Optional<Cliente> cliente = clienteRepository.findById(idCliente);
 
 		// cliente vazio
@@ -59,16 +62,17 @@ public class ClienteService {
 			// cliente vazio recebe cliente no banco
 			clienteNoBanco = cliente.get();
 			clienteDTO = transformarClienteModelEmClienteDTO(clienteDTO, clienteNoBanco);
+			return clienteDTO;
 		}
-		return clienteDTO;
+		throw new ClienteException("Cliente não encontrado");
 	}
 
 	// ATUALIZAR
 	public void atualizar(Integer idCliente, Cliente clienteDTO) {
 		Optional<Cliente> cliente = clienteRepository.findById(idCliente);
-		Cliente clienteNoBanco = clienteRepository.getById(idCliente);
-
+		Cliente clienteNoBanco = new Cliente();
 		if (cliente.isPresent()) {
+			clienteNoBanco = cliente.get();
 			if (clienteDTO.getCpf() != null) {
 				clienteNoBanco.setCpf(clienteDTO.getCpf());
 			}

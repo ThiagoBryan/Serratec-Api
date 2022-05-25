@@ -14,30 +14,41 @@
 //Como ordenar no findAll do repositório 
 package org.serratec.backend.biblioteca.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Livro {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer Id;
+	private Integer id;
+	@NotBlank
+	@Size(min = 5, max = 30, message = "{Numero de caracteres inválido}") 
 	private String titulo;
+	@NotBlank
+	@Size(min = 3, max = 20, message = "{Numero de caracteres inválido}") 
 	private String tipo;
+	@NotBlank
+	@Size(min = 10, max = 40, message = "{Numero de caracteres inválido}") 
 	private String autor;
-	private Date dataPublicacao;
+	@NotBlank
+	@Past// proibi datat atual
+	private LocalDate dataPublicacao;
 	
 	public Livro() {
 		super();
 	}
 
-	public Integer getId() {
-		return Id;
+	public Integer getid() {
+		return id;
 	}
 
 	public String getTitulo() {
@@ -64,11 +75,11 @@ public class Livro {
 		this.autor = autor;
 	}
 
-	public Date getDataPublicacao() {
+	public LocalDate getDataPublicacao() {
 		return dataPublicacao;
 	}
 
-	public void setDataPublicacao(Date dataPublicacao) {
+	public void setDataPublicacao(LocalDate dataPublicacao) {
 		this.dataPublicacao = dataPublicacao;
 	}
 

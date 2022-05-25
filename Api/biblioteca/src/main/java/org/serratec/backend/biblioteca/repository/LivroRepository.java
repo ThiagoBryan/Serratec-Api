@@ -11,7 +11,7 @@ public interface LivroRepository extends JpaRepository<Livro,Integer>{
 
 	Optional<Livro> findByTitulo(String titulo);
 
-	//Livro getLivroById(Integer id);
+	Livro getLivroById(Integer id);
 	
 	 
 	

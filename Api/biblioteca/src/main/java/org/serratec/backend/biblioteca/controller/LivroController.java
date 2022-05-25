@@ -8,6 +8,7 @@ import org.serratec.backend.biblioteca.exception.LivroException;
 import org.serratec.backend.biblioteca.model.Livro;
 import org.serratec.backend.biblioteca.service.LivroService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -38,7 +39,7 @@ public class LivroController {
 	}
 	
 	@PutMapping("/atualizar/{id}")
-	public ResponseEntity<Void> atualizar(@PathVariable Integer id,@RequestBody Livro livroDTO){
+	public ResponseEntity<Void> atualizar(@PathVariable Integer id,@RequestBody LivroDTO livroDTO) throws NotFoundException{
 		livroService.atualizar(id, livroDTO);
 		return new ResponseEntity<>(HttpStatus.ACCEPTED);
 	}

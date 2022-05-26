@@ -47,7 +47,7 @@ public class Livro {
 	private String autor;
 	@Column
 	@NotNull
-	@Past// proibi data atual
+	@Past(message = "Data Inválida")// proibi data atual
 	private LocalDate dataPublicacao;
 	
 	public Livro() {

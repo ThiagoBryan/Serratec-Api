@@ -1,5 +1,6 @@
 package org.serratec.backend.biblioteca.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,6 +10,8 @@ import org.serratec.backend.biblioteca.exception.LivroException;
 import org.serratec.backend.biblioteca.model.Livro;
 import org.serratec.backend.biblioteca.repository.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -36,6 +39,61 @@ public class LivroService {
 
 		return livro;
 	}
+	
+	public List<LivroDTO> listaLivros(){
+		List<Livro> listaModel = livroRepository.findAll();
+		List<LivroDTO> listaDTO = new ArrayList<>();
+		
+		for (Livro livroModel : listaModel) {
+			LivroDTO livroDTO = new LivroDTO();
+			modelEmDTO(livroDTO, livroModel);
+			listaDTO.add(livroDTO);
+		}		
+		
+		return listaDTO;		
+	}
+	
+	public List<LivroDTO> listaOrdenada(String ordem) throws LivroException{
+		List<Livro> listaModel = new ArrayList<>();
+		List<LivroDTO> listaDTO = new ArrayList<>();
+		
+		String nomeAtributo = null; 
+		
+		switch (ordem) { 
+		
+		case "titulo" :
+			nomeAtributo = "titulo";
+		break;
+		
+		case "autor":
+			nomeAtributo = "autor";
+		break;
+		
+		case "tipo":
+			nomeAtributo = "tipo";
+		break;
+		
+		case "data":
+			nomeAtributo = "dataPublicacao";
+		break;
+		
+		default:
+			throw new LivroException("Parâmetro não aceito. Os parâmetros aceitos são: titulo, autor, categoria, data.");
+			
+		}
+			
+		
+		listaModel = livroRepository.findAll(Sort.by(Order.by(nomeAtributo)));
+
+		
+		for (Livro livroModel : listaModel) {
+			LivroDTO livroDTO = new LivroDTO();
+			modelEmDTO(livroDTO, livroModel);
+			listaDTO.add(livroDTO);
+		}		
+		
+		return listaDTO;		
+	}	
 
 	public String salvar(LivroDTO livroDTO) throws ArgumentoInvalidoException {
 		if (livroDTO.getTitulo() == null) {

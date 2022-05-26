@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -35,6 +36,11 @@ public class LivroController {
 	@GetMapping("/buscar/{id}")
 	public ResponseEntity<LivroDTO> buscarPorId(@PathVariable Integer id) throws LivroException {
 		return ResponseEntity.ok(livroService.buscarPorId(id));
+	}
+	
+	@GetMapping("/lista/ordenada")
+	public ResponseEntity<List<LivroDTO>> listaOrdenada(@RequestParam String ordem) throws LivroException {
+		return ResponseEntity.ok(livroService.listaOrdenada(ordem));
 	}
 	
 	@PutMapping("/atualizar/{id}")

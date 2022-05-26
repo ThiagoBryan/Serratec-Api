@@ -2,22 +2,22 @@ package org.serratec.backend.biblioteca.exception;
 
 public class LivroException extends Exception {
 	
-	
 	private static final long serialVersionUID = 1L;
-	private String titulo;
-	//no buscar
-	public LivroException(String titulo) {
-		this.titulo=titulo;
+	
+	public LivroException() {
+		super();
 	}
-
-	public String getTitulo() {
-		return titulo;
+	
+	public LivroException(String message) {
+		super(message);
 	}
-
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
-	}
-
 	
 
+	public LivroException(String message, Exception cause) {
+		super(message, cause);
+	}
+	
+	public LivroException(Exception e) {
+		super(e);
+	}
 }

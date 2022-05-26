@@ -12,6 +12,7 @@ public class CartaoDTO implements Serializable {
 	private String numeroCartao;
 	private String nomeTitular;
 	private LocalDate dataValidade;
+	private Integer idCliente; // CRIAI PARA LIGAR UMA CLASSE NA OUTRA
 	
 	public CartaoDTO() {
 		super();
@@ -59,6 +60,14 @@ public class CartaoDTO implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public Integer getIdCliente() {
+		return idCliente;
+	}
+
+	public void setIdCliente(Integer idCliente) {
+		this.idCliente = idCliente;
 	}
 	
 	

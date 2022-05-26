@@ -8,8 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="cartao")
@@ -37,6 +41,19 @@ public class Cartao implements Serializable{
 	@Column(name="cartao_data_validade")
 	@NotNull
 	private LocalDate dataValidade;
+	
+	@ManyToOne //PARA LIGAR AS CLASSES E SEMPRE CRIAR OS GETTERS AND SETTERS
+	@JoinColumn(name="cliente_id", referencedColumnName = "cliente_cd_id")
+	@JsonIgnore
+	private Cliente cliente;
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
 
 	//CONTRUTOR VAZIO
 	public Cartao() {

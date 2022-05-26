@@ -28,20 +28,18 @@ public class LivroController {
 	LivroService livroService;
 	
 	@PostMapping("/salvar")
-	public ResponseEntity<Void> salvar(@RequestBody LivroDTO livroDTO) throws ArgumentoInvalidoException{
-		livroService.salvar(livroDTO);
-		return new ResponseEntity<>(HttpStatus.CREATED);
+	public ResponseEntity<String> salvar(@RequestBody LivroDTO livroDTO) throws ArgumentoInvalidoException{
+		return ResponseEntity.ok(livroService.salvar(livroDTO));
 	}
 	
-	@GetMapping("/buscar/{titulo}")
-	public ResponseEntity<LivroDTO> buscarPorTitulo(@PathVariable String titulo) throws LivroException {
-		return ResponseEntity.ok(livroService.buscarPorTitulo(titulo));
+	@GetMapping("/buscar/{id}")
+	public ResponseEntity<LivroDTO> buscarPorId(@PathVariable Integer id) throws LivroException {
+		return ResponseEntity.ok(livroService.buscarPorId(id));
 	}
 	
 	@PutMapping("/atualizar/{id}")
-	public ResponseEntity<Void> atualizar(@PathVariable Integer id,@RequestBody LivroDTO livroDTO) throws NotFoundException{
-		livroService.atualizar(id, livroDTO);
-		return new ResponseEntity<>(HttpStatus.ACCEPTED);
+	public ResponseEntity<String> atualizar(@PathVariable Integer id,@RequestBody LivroDTO livroDTO) throws NotFoundException, LivroException{
+		return ResponseEntity.ok(livroService.atualizar(id, livroDTO));
 	}
 	
 	@DeleteMapping("/deletar/{id}")

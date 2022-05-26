@@ -9,7 +9,6 @@ import org.serratec.backend.biblioteca.exception.LivroException;
 import org.serratec.backend.biblioteca.model.Livro;
 import org.serratec.backend.biblioteca.repository.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -49,38 +48,41 @@ public class LivroService {
 		return "O livro foi criado com o id: " + livroSalvar.getid();
 	}
 
-	public LivroDTO buscarPorTitulo(String titulo) throws LivroException {
-		Optional<Livro> livro = livroRepository.findByTitulo(titulo);
+	public LivroDTO buscarPorId(Integer id) throws LivroException {
+		Optional<Livro> livro = livroRepository.findById(id);
 		Livro buscarLivro = new Livro();
-		LivroDTO novoLivroDTO = new LivroDTO();
-
-		if (livro.isPresent()) {
+		LivroDTO livroDTO = new LivroDTO();
+		if(livro.isPresent()) {
 			buscarLivro = livro.get();
-			novoLivroDTO = modelEmDTO(novoLivroDTO, buscarLivro);
-		} else {
-			if (buscarLivro.getTitulo() == null)
-				throw new LivroException(titulo);
+			modelEmDTO(livroDTO,buscarLivro);
+			return livroDTO;
 		}
-		return novoLivroDTO;
+		throw new LivroException("Livro com o id informado nao encontrado");
 	}
+	
 
-	public String atualizar(Integer id, LivroDTO livroDTO) throws NotFoundException {
-		Livro atualizarLivro = livroRepository.findById(id).orElseThrow(NotFoundException::new);
-
-		if (livroDTO.getTitulo() != null) {
-			atualizarLivro.setTitulo(livroDTO.getTitulo());
+	public String atualizar(Integer id, LivroDTO livroDTO) throws LivroException {
+		// Livro atualizarLivro = livroRepository.findById(id).orElseThrow(LivroException::new);
+		Optional<Livro> livro = livroRepository.findById(id);
+		Livro atualizarLivro = new Livro();
+		if (livro.isPresent()) {
+			atualizarLivro = livro.get();
+			if (livroDTO.getTitulo() != null) {
+				atualizarLivro.setTitulo(livroDTO.getTitulo());
+			}
+			if (livroDTO.getAutor() != null) {
+				atualizarLivro.setAutor(livroDTO.getAutor());
+			}
+			if (livroDTO.getDataPublicacao() != null) {
+				atualizarLivro.setDataPublicacao(livroDTO.getDataPublicacao());
+			}
+			if (livroDTO.getTipo() != null) {
+				atualizarLivro.setTipo(livroDTO.getTipo());
+			}
+			livroRepository.save(atualizarLivro);
+			return "O livro com o id " + atualizarLivro.getid() + " foi atualizado";
 		}
-		if (livroDTO.getAutor() != null) {
-			atualizarLivro.setAutor(livroDTO.getAutor());
-		}
-		if (livroDTO.getDataPublicacao() != null) {
-			atualizarLivro.setDataPublicacao(livroDTO.getDataPublicacao());
-		}
-		if (livroDTO.getTipo() != null) {
-			atualizarLivro.setTipo(livroDTO.getTipo());
-		}
-		livroRepository.save(atualizarLivro);
-		return "O livro com o id " + atualizarLivro.getid() + " foi atualizado";
+		throw new LivroException("Livro nao foi atualizado");
 	}
 
 	public void deletar(Integer id) {

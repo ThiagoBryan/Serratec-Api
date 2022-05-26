@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class ApiError {
 
 	public class APIError {
 
@@ -74,4 +73,4 @@ public class ApiError {
 		}
 
 	}
-}
+

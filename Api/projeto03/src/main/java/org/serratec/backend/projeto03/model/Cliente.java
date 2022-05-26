@@ -1,12 +1,15 @@
 package org.serratec.backend.projeto03.model;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity //para saber que tem uma tabela
@@ -35,6 +38,27 @@ public class Cliente {
 	@Column(name="cliente_dt_dataNascimento") //dt para identificar o que no caso dt = id
 	private Date dataNascimento;
 	
+	@OneToMany(mappedBy = "cliente") //PARA LIGAR AS CLASSES E SEMPRE CRIAR OS GETTERS AND SETTERS
+	private List<Cartao> listaCartao;
+
+	
+	// GETTERS AND SETTERS do @onetomany
+	public Integer getIdCliente() {
+		return idCliente;
+	}
+
+	public void setIdCliente(Integer idCliente) {
+		this.idCliente = idCliente;
+	}
+
+	public List<Cartao> getListaCartao() {
+		return listaCartao;
+	}
+
+	public void setListaCartao(List<Cartao> listaCartao) {
+		this.listaCartao = listaCartao;
+	}
+
 	//CONSTRUTOR
 	public Cliente() {
 		

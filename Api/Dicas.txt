@@ -1,5 +1,8 @@
 localhost:8080/
 ====================================================
+BANCO DE DADOS H2
+http://localhost:8080/h2-console
+===================================================
 Get = Pega informação
 Post = salva informação
 Put = Atualizar informação

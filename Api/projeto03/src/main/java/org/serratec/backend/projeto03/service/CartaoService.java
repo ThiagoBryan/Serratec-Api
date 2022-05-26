@@ -8,6 +8,7 @@ import org.serratec.backend.projeto03.dto.CartaoDTO;
 import org.serratec.backend.projeto03.exception.CartaoException;
 import org.serratec.backend.projeto03.model.Cartao;
 import org.serratec.backend.projeto03.repository.CartaoRepository;
+import org.serratec.backend.projeto03.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,9 @@ public class CartaoService {
 	
 	@Autowired
 	CartaoRepository cartaoRepository;
+	
+	@Autowired 
+	ClienteRepository clienteRepository;
 	
 	
 	public CartaoDTO transformarModelEmDTO(Cartao cartao, CartaoDTO cartaoDTO) {
@@ -37,6 +41,10 @@ public class CartaoService {
 		cartao.setNomeTitular(cartaoDTO.getNomeTitular());
 		cartao.setNumeroCartao(cartaoDTO.getNumeroCartao());
 		
+		if(cartaoDTO.getIdCliente() != null) { //PARA LIGAR AS CLASSES
+			cartao.setCliente(clienteRepository.findById(cartaoDTO.getIdCliente()).get());
+			
+		}
 		return cartao;
 		
 	}

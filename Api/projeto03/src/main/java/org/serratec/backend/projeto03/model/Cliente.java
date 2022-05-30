@@ -14,8 +14,6 @@ import javax.persistence.Table;
 
 @Entity //para saber que tem uma tabela
 @Table(name="cliente")
-
-
 public class Cliente {
 	
 	@Id
@@ -43,13 +41,7 @@ public class Cliente {
 
 	
 	// GETTERS AND SETTERS do @onetomany
-	public Integer getIdCliente() {
-		return idCliente;
-	}
-
-	public void setIdCliente(Integer idCliente) {
-		this.idCliente = idCliente;
-	}
+	
 
 	public List<Cartao> getListaCartao() {
 		return listaCartao;
@@ -65,13 +57,13 @@ public class Cliente {
 	}
 	
 	// GETTERS AND SETTERS
-
-	public Integer getId() {
+	
+	public Integer getIdCliente() {
 		return idCliente;
 	}
 
-	public void setId(Integer id) {
-		this.idCliente = id;
+	public void setIdCliente(Integer idCliente) {
+		this.idCliente = idCliente;
 	}
 
 	public String getNome() {

@@ -20,8 +20,8 @@ public class ClienteService {
 	// transita os dados
 	public ClienteDTO transformarClienteModelEmClienteDTO(ClienteDTO clienteDTO, Cliente cliente) {
 
-		// não setamos o id pois ele é automatico
-		// clienteDTO.setIdCliente(cliente.getId());
+		
+	    clienteDTO.setIdCliente(cliente.getIdCliente());
 		clienteDTO.setCpf(cliente.getCpf());
 		clienteDTO.setDataNascimento(cliente.getDataNascimento());
 		clienteDTO.setNome(cliente.getNome());
@@ -33,6 +33,7 @@ public class ClienteService {
 	
 	public Cliente transformarClienteDTOEmClienteModel(ClienteDTO clienteDTO, Cliente cliente) {
 		
+		// não setamos o id pois ele é automatico
 		cliente.setCpf(clienteDTO.getCpf());
 		cliente.setDataNascimento(clienteDTO.getDataNascimento());
 		cliente.setNome(clienteDTO.getNome());

@@ -1,3 +1,7 @@
+https://www.baeldung.com/spring-data-sorting
+===================================
+https://start.spring.io/
+==================================================
 localhost:8080/
 ====================================================
 BANCO DE DADOS H2
@@ -34,6 +38,10 @@ DEPEDENCIA PARA @NotNull
 <groupId>org.springframework.boot</groupId>
 <artifactId>spring-boot-starter-validation</artifactId>
 </dependency>
+=============================================================
+SITE SWAGGER
+http://localhost:8080/swagger-ui/index.html#
+
 ===============================================================
 SWAGGER
 
@@ -55,6 +63,11 @@ SE DER ERRO NA HORA DE SUBIR COLOCAR ESSE COMANDO NO POM PARA VOLTAR A VERSAO
 OU COLOCAR ESSE COMANDO NO PROPERTIES
 @EnableSwagger2WebMvc
 =====================================================================
-SITE SWAGGER
-http://localhost:8080/swagger-ui/index.html#
-=============================================================
+
+MANDAR E-MAIL
+
+<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-mail</artifactId>
+	</dependency>
+===================================================================

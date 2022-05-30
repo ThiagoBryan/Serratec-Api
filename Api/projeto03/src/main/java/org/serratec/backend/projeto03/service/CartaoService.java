@@ -3,9 +3,10 @@ package org.serratec.backend.projeto03.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
+import javax.mail.MessagingException;
 import org.serratec.backend.projeto03.dto.CartaoDTO;
 import org.serratec.backend.projeto03.exception.CartaoException;
+import org.serratec.backend.projeto03.exception.EmailException;
 import org.serratec.backend.projeto03.model.Cartao;
 import org.serratec.backend.projeto03.repository.CartaoRepository;
 import org.serratec.backend.projeto03.repository.ClienteRepository;
@@ -21,11 +22,14 @@ public class CartaoService {
 	@Autowired 
 	ClienteRepository clienteRepository;
 	
+	@Autowired
+	EmailService emailService;
+	
 	
 	public CartaoDTO transformarModelEmDTO(Cartao cartao, CartaoDTO cartaoDTO) {
 		
-		cartaoDTO.setDataValidade(cartao.getDataValidade());
 		cartaoDTO.setIdCartao(cartao.getIdCartao());
+		cartaoDTO.setDataValidade(cartao.getDataValidade());
 		cartaoDTO.setLimiteCartao(cartao.getLimiteCartao());
 		cartaoDTO.setNomeTitular(cartao.getNomeTitular());
 		cartaoDTO.setNumeroCartao(cartao.getNumeroCartao());
@@ -35,7 +39,7 @@ public class CartaoService {
 	
 	public Cartao transformarDTOEmModel(Cartao cartao, CartaoDTO cartaoDTO) {
 		
-		
+		// não setamos o id pois ele é automatico
 		cartao.setDataValidade(cartaoDTO.getDataValidade());
 		cartao.setLimiteCartao(cartaoDTO.getLimiteCartao());
 		cartao.setNomeTitular(cartaoDTO.getNomeTitular());
@@ -49,10 +53,11 @@ public class CartaoService {
 		
 	}
 	
-	public String salvar(CartaoDTO cartaoDTO) {
+	public String salvar(CartaoDTO cartaoDTO) throws EmailException, MessagingException {
 		Cartao cartao = new Cartao();
 		transformarDTOEmModel(cartao,cartaoDTO);
 		cartaoRepository.save(cartao);
+		emailService.emailTeste(cartaoDTO);// enviar e-mail quando salvar o cartao
 		return "O cartao criado foi com o id: "+cartao.getIdCartao();
 	}
 	
@@ -95,7 +100,7 @@ public class CartaoService {
 		throw new CartaoException("O cartao nao foi atualizado");
 	}
 	
-	public List<CartaoDTO> buscarTodos(){
+	public List<CartaoDTO> buscarTodos(){				//para usar sem ser DESC so trocar por findAll();
 		List<Cartao> listaCartaoModel = cartaoRepository.findAll();
 		List<CartaoDTO> listaCartaoDTO = new ArrayList<>();
 		

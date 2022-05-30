@@ -12,7 +12,7 @@ public class CartaoDTO implements Serializable {
 	private String numeroCartao;
 	private String nomeTitular;
 	private LocalDate dataValidade;
-	private Integer idCliente; // CRIAI PARA LIGAR UMA CLASSE NA OUTRA
+	private Integer idCliente; // CRIAr PARA LIGAR UMA CLASSE NA OUTRA
 	
 	public CartaoDTO() {
 		super();

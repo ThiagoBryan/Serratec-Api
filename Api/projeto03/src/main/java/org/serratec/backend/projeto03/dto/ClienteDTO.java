@@ -5,7 +5,7 @@ import java.sql.Date;
 public class ClienteDTO {
 
 	//ATRIBUTOS
-	//private Integer idCliente;
+	private Integer idCliente;
 	private String nome;
 	private String cpf;
 	private String numeroTelefone;
@@ -18,14 +18,14 @@ public class ClienteDTO {
 	}
 
 	//GETTERS AND SETTERS
-//	public Integer getIdCliente() {
-//		return idCliente;
-//	}
-//
-//
-//	public void setIdCliente(Integer idCliente) {
-//		this.idCliente = idCliente;
-//	}
+	public Integer getIdCliente() {
+		return idCliente;
+	}
+
+
+	public void setIdCliente(Integer idCliente) {
+		this.idCliente = idCliente;
+	}
 
 
 	public String getNome() {

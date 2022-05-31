@@ -5,10 +5,10 @@ import java.util.List;
 import javax.mail.MessagingException;
 
 import org.serratec.backend.borracharia.DTO.BorrachariaDTO;
-import org.serratec.backend.borracharia.DTO.CarroDTO;
+import org.serratec.backend.borracharia.DTO.RelatorioBorrachariaDTO;
 import org.serratec.backend.borracharia.exception.BorrachariaException;
-import org.serratec.backend.borracharia.exception.CarroException;
 import org.serratec.backend.borracharia.exception.EmailException;
+import org.serratec.backend.borracharia.model.Borracharia;
 import org.serratec.backend.borracharia.service.BorrachariaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -62,5 +62,10 @@ public class BorrachariaController {
 		return new ResponseEntity<>(HttpStatus.ACCEPTED);
 	}
 	
+	@GetMapping("/relatorio")
+	public List<RelatorioBorrachariaDTO> relatorio(){
+		return borrachariaService.relatorio();
+	}
+
 
 }

@@ -39,16 +39,17 @@ public class Borracharia implements Serializable {
 	private LocalDate data;
 	
 	@ManyToOne
-	@JoinColumn(name = "cliente_id", referencedColumnName = "carro_cd_id")
+	@JoinColumn(name = "carro_id", referencedColumnName = "carro_cd_id")
 	@JsonIgnore
-	private Carro clienteBorracharia;
+	private Carro carroBorracharia;
 
-	public Carro getClienteBorracharia() {
-		return clienteBorracharia;
+	
+	public Carro getCarroBorracharia() {
+		return carroBorracharia;
 	}
 
-	public void setClienteBorracharia(Carro clienteBorracharia) {
-		this.clienteBorracharia = clienteBorracharia;
+	public void setCarroBorracharia(Carro carroBorracharia) {
+		this.carroBorracharia = carroBorracharia;
 	}
 
 	public Borracharia() {

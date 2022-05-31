@@ -42,7 +42,7 @@ public class Carro implements Serializable {
 	
 	
 
-	@OneToMany(mappedBy = "clienteBorracharia")//cascade = CascadeType.ALL
+	@OneToMany(mappedBy = "carroBorracharia")//cascade = CascadeType.ALL
 	private List<Borracharia> listaBorracharia;
 	
 	

@@ -7,6 +7,7 @@ import java.util.Optional;
 import javax.mail.MessagingException;
 
 import org.serratec.backend.borracharia.DTO.BorrachariaDTO;
+import org.serratec.backend.borracharia.DTO.RelatorioBorrachariaDTO;
 import org.serratec.backend.borracharia.exception.BorrachariaException;
 import org.serratec.backend.borracharia.exception.EmailException;
 import org.serratec.backend.borracharia.model.Borracharia;
@@ -45,7 +46,7 @@ public class BorrachariaService {
 		borracharia.setServico(borrachariaDTO.getServico());
 		
 		if(borrachariaDTO.getIdCarro() != null) {
-			borracharia.setClienteBorracharia(carroRepository.findById(borrachariaDTO.getIdCarro()).get());
+			borracharia.setCarroBorracharia(carroRepository.findById(borrachariaDTO.getIdCarro()).get());
 	
 		}
 		return borracharia;
@@ -74,7 +75,7 @@ public class BorrachariaService {
 	}
 	
 	public List<BorrachariaDTO> buscarTodos() {
-		List<Borracharia> listaBorracharia = borrachariaRepository.buscarTodosDesc();
+		List<Borracharia> listaBorracharia = borrachariaRepository.findAll();
 		List<BorrachariaDTO> listaBorrachariaDTO = new ArrayList<>();
 
 		for (Borracharia borracharia : listaBorracharia) {
@@ -116,6 +117,10 @@ public class BorrachariaService {
 	
 	public void deletar(Integer idBorracharia) {
 		borrachariaRepository.deleteById(idBorracharia);
+	}
+	
+	public List<RelatorioBorrachariaDTO> relatorio() {
+		return borrachariaRepository.relatorio();
 	}
 	
 

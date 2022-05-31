@@ -3222,3 +3222,25 @@ limit 5 [42122-212]
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.base/java.lang.Thread.run(Thread.java:833)
+2022-05-31 13:56:19 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "Alinhamento e Balanceamento"; SQL statement:
+select
+c2.CLIENTE_TX_NOME as cliente,
+c.CARRO_TX_MODELO as modelo,
+b.BORRACHARIA_TX_SERVICO as servico,
+b.BORRACHARIA_NUM_VALOR as valor
+from borracharia b join carro c on(b.BORRACHARIA_TX_SERVICO =c.CARRO_CD_ID )
+join cliente c2 on(c2.CLIENTE_CD_ID=c.CLIENTE_ID)
+order by b.BORRACHARIA_CD_ID desc
+limit 5 [22018-212]
+2022-05-31 13:57:59 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "Alinhamento e Balanceamento"; SQL statement:
+select
+c2.CLIENTE_TX_NOME as cliente,
+c.CARRO_TX_MODELO as modelo,
+b.BORRACHARIA_TX_SERVICO as servico,
+b.BORRACHARIA_NUM_VALOR as valor
+from borracharia b join carro c on(b.BORRACHARIA_TX_SERVICO=c.CARRO_CD_ID )
+join cliente c2 on(c2.CLIENTE_CD_ID=c.CLIENTE_ID)
+order by b.BORRACHARIA_CD_ID desc
+limit 5 [22018-212]

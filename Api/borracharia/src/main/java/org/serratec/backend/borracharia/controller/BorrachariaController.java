@@ -62,6 +62,7 @@ public class BorrachariaController {
 		return new ResponseEntity<>(HttpStatus.ACCEPTED);
 	}
 	
+	//RELATORIO
 	@GetMapping("/relatorio")
 	public List<RelatorioBorrachariaDTO> relatorio(){
 		return borrachariaService.relatorio();

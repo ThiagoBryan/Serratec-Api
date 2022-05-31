@@ -10,15 +10,15 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BorrachariaRepository extends JpaRepository<Borracharia,Integer> {
 	
-	
+	//RELATORIO
 	@Query(value="select\r\n"
 			+ "c2.CLIENTE_TX_NOME as cliente,\r\n"
 			+ "c.CARRO_TX_MODELO as modelo,\r\n"
 			+ "b.BORRACHARIA_TX_SERVICO as servico,\r\n"
 			+ "b.BORRACHARIA_NUM_VALOR as valor\r\n"
-			+ "from borracharia b join carro c on(b.BORRACHARIA_TX_SERVICO=c.CARRO_CD_ID )\r\n"
+			+ "from borracharia b join carro c on(b.CARRO_ID =c.CARRO_CD_ID )\r\n"
 			+ "join cliente c2 on(c2.CLIENTE_CD_ID=c.CLIENTE_ID)\r\n"
-			+ "order by b.BORRACHARIA_CD_ID desc\r\n"
+			+ "order by b.BORRACHARIA_CD_ID \r\n"
 			+ "limit 5", nativeQuery=true)
 	
 	List<RelatorioBorrachariaDTO> relatorio();

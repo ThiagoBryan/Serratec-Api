@@ -34,6 +34,7 @@ public class BorrachariaService {
 		borrachariaDTO.setData(borracharia.getData());
 		borrachariaDTO.setValor(borracharia.getValor());
 		borrachariaDTO.setServico(borracharia.getServico());
+		borrachariaDTO.setIdCarro(borracharia.getCarroBorracharia().getIdCarro());
 		
 
 		return borrachariaDTO;
@@ -119,6 +120,7 @@ public class BorrachariaService {
 		borrachariaRepository.deleteById(idBorracharia);
 	}
 	
+	//RELATORIO
 	public List<RelatorioBorrachariaDTO> relatorio() {
 		return borrachariaRepository.relatorio();
 	}

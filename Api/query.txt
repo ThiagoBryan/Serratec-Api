@@ -1,0 +1,22 @@
+PESQUISA NO BANCO DE DADOS
+
+select
+c2.CLIENTE_TX_NOME as cliente,
+c.CARRO_TX_MODELO as modelo,
+b.BORRACHARIA_TX_SERVICO as servico,
+b.BORRACHARIA_NUM_VALOR as valor
+from borracharia b join carro c on(b.BORRACHARIA_TX_SERVICO =c.CARRO_CD_ID )
+join cliente c2 on(c2.CLIENTE_CD_ID=c.CLIENTE_ID)
+order by b.BORRACHARIA_CD_ID desc
+limit 5
+
+
+select
+c2.CLIENTE_TX_NOME as cliente,
+c.CARRO_TX_MODELO as modelo,
+b.BORRACHARIA_TX_SERVICO as servico,
+b.BORRACHARIA_NUM_VALOR as valor
+from borracharia b join carro c on(b.CARRO_ID  =c.CARRO_CD_ID )
+join cliente c2 on(c2.CLIENTE_CD_ID=c.CLIENTE_ID)
+order by b.BORRACHARIA_CD_ID desc
+limit 5
